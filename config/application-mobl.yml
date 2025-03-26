@@ -1,0 +1,39 @@
+# application.yml
+# General configuration file for a Golang console application.
+
+app:
+  name: "loadYMLFiles"  # The name of your application
+  version: "1.0.0"           # The version of your application
+
+logging:
+  level: "info"              # Logging level: debug, info, warn, error, fatal
+  format: "json"             # Format of logs: json or text
+  output: "stdout"           # Log output: stdout, stderr, or file
+  file: # If output is file, specify file path
+    path: "./logs/app.log"
+
+server: # Optional: Configuration for any server the app might use
+  port: 8080                 # Default server port
+  host: "localhost"          # Hostname or IP address
+
+database: # Database configuration details
+  driver: "postgres"         # E.g., postgres, mysql, sqlite
+  host: "127.0.0.1"          # Database hostname or IP address
+  port: 5432                 # Database port
+  username: "dbuser"         # Database username
+  password: "dbpassword"     # Database password (use environment variables for sensitive values)
+  name: "appdb"              # The name of the database
+
+client:
+  id: 02
+  name: "avianca-mobl"
+features: # Enable or disable specific application features
+  featureX: true
+  featureY: false
+
+env: # Define your environment variables or settings here
+  mode: "development"        # Application mode: development, staging, production
+  debug: true
+
+secrets: # Example section for sensitive data (use environment variables in practice)
+  apiKey: "replace-with-your-api-key"

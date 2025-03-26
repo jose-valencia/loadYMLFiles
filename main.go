@@ -18,10 +18,14 @@ type Config struct {
 		Port int    `yaml:"port"`
 	} `yaml:"server"`
 	Database struct {
-		User     string `yaml:"user"`
+		User     string `yaml:"username"`
 		Password string `yaml:"password"`
 		Name     string `yaml:"name"`
 	} `yaml:"database"`
+	Client struct {
+		Name string `yaml:"name"`
+		Id   string `yaml:"id"`
+	} `yaml:"client"`
 }
 
 // LoadYAML loads a single YAML file into the config struct
@@ -38,6 +42,7 @@ func LoadYAML(filename string, config *Config) error {
 	if err := yaml.Unmarshal(data, config); err != nil {
 		return fmt.Errorf("failed to unmarshal YAML from file %s: %w", filename, err)
 	}
+	return err
 }
 
 // LoadAllYAMLFiles loads all YAML files in a given folder
@@ -75,6 +80,9 @@ func main() {
 
 	// Print all loaded configurations
 	for i, config := range configs {
-		fmt.Printf("Config %d: %+v\n", i+1, config)
+		fmt.Printf("---------------------------------------------\n")
+		fmt.Printf("id %d: %+v\n", i+1, config.Client.Id)
+		fmt.Printf("name %d: %+v\n", i+1, config.Client.Name)
+		fmt.Printf("---------------------------------------------\n")
 	}
 }
